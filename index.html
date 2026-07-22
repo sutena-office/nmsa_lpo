@@ -1,0 +1,395 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>協会LPカンプ パターンC｜誠実さが、正しく報われる業界へ</title>
+<style>
+  :root{
+    --page-bg:#f5f7f6; --page-fg:#4a5550;
+    --g-deep:#1E7A5F; --g-mid:#2E9E77; --g-mint:#7FD4B5; --g-pale:#EAF7F1;
+    --ink:#14211D; --charcoal:#1F2A28; --card-line:#cfe9dd;
+  }
+  @media (prefers-color-scheme: dark){ :root{ --page-bg:#161a18; --page-fg:#9fb0a8; } }
+  :root[data-theme="dark"]{ --page-bg:#161a18; --page-fg:#9fb0a8; }
+  :root[data-theme="light"]{ --page-bg:#f5f7f6; --page-fg:#4a5550; }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--page-bg); color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .stage{ display:flex; flex-direction:column; align-items:center; gap:14px; padding:28px 12px 60px; }
+  .comp-note{ color:var(--page-fg); font-size:12px; letter-spacing:.08em; text-align:center; line-height:1.7; }
+  .comp-note strong{ letter-spacing:.14em; }
+  .phone{ width:100%; max-width:460px; background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 12px 40px rgba(20,33,29,.25); }
+  section{ padding:44px 22px; position:relative; overflow:hidden; }
+  .sec-label{ position:absolute; top:8px; right:10px; font-size:9px; letter-spacing:.12em; color:#9db8ad; z-index:5; }
+
+  .h-bar{ display:flex; gap:12px; align-items:flex-start; }
+  .h-bar .bar{ flex:0 0 6px; align-self:stretch; background:linear-gradient(180deg,var(--g-mid),var(--g-deep)); border-radius:3px; }
+  h2{ margin:0; font-size:23px; line-height:1.4; font-weight:900; letter-spacing:.01em; text-wrap:balance; }
+  .gr{ color:var(--g-deep); }
+  .lead{ font-size:14px; line-height:1.95; margin:14px 0 0; }
+  .cards{ display:flex; flex-direction:column; gap:12px; margin-top:20px; }
+  .card{ background:#fff; border:1px solid var(--card-line); border-radius:12px; box-shadow:0 3px 12px rgba(30,122,95,.08); padding:16px; }
+  .badge{ flex:0 0 48px; width:48px; height:48px; border-radius:50%; background:radial-gradient(circle at 30% 25%, var(--g-mid), var(--g-deep)); display:flex; align-items:center; justify-content:center; box-shadow:0 3px 8px rgba(30,122,95,.35); }
+  .badge svg{ width:24px; height:24px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .cta{ display:flex; align-items:center; justify-content:center; gap:12px; margin:26px auto 0; padding:16px 20px; width:100%; border-radius:999px; background:linear-gradient(180deg,#2d9e76,#176a51); box-shadow:0 6px 16px rgba(23,106,81,.45), inset 0 1px 0 rgba(255,255,255,.35); color:#fff; font-size:18px; font-weight:900; letter-spacing:.03em; text-decoration:none; }
+  .cta .arr{ flex:0 0 30px; width:30px; height:30px; border-radius:50%; background:#fff; color:var(--g-deep); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; }
+  .ph{ border-radius:14px; background:linear-gradient(135deg,#dde5e1,#c3cfc9); border:1px solid #b8c6c0; display:flex; align-items:center; justify-content:center; color:#61736c; font-size:11px; letter-spacing:.1em; text-align:center; line-height:1.8; }
+  .ph-live{ border-radius:14px; border:2px dashed var(--g-mint); background:var(--g-pale); display:flex; align-items:center; justify-content:center; color:var(--g-deep); font-size:11px; letter-spacing:.1em; text-align:center; line-height:1.8; }
+  .corner{ position:absolute; width:34px; height:34px; border:0 solid var(--g-mint); }
+  .corner.tl{ top:10px; left:10px; border-top-width:2px; border-left-width:2px; }
+  .corner.tr{ top:10px; right:10px; border-top-width:2px; border-right-width:2px; }
+  .corner.br{ bottom:10px; right:10px; border-bottom-width:2px; border-right-width:2px; }
+
+  /* A hero */
+  .hero{ background:linear-gradient(180deg,#fff 55%, var(--g-pale)); padding-top:54px; }
+  .hero .chart{ position:absolute; top:20px; left:20px; opacity:.9; }
+  .hero h1{ margin:16px 0 0; font-size:33px; line-height:1.32; font-weight:900; letter-spacing:.01em; }
+  .hero h1 .u{ background:linear-gradient(transparent 66%, var(--g-mint) 66%); padding:0 3px; }
+  .hero .sub{ margin:18px 0 0; font-size:14px; font-weight:700; line-height:1.9; }
+  .hero .decl{ margin:16px 0 0; font-size:14.5px; font-weight:800; line-height:1.85; color:var(--g-deep); }
+  .org-chip{ display:inline-block; margin-top:26px; padding:5px 12px; border-radius:999px; background:var(--g-pale); border:1px solid var(--g-mint); color:var(--g-deep); font-size:11.5px; font-weight:800; letter-spacing:.04em; }
+  .org{ display:flex; align-items:center; gap:10px; margin-top:10px; }
+  .org .name{ font-size:18px; font-weight:900; border-bottom:3px solid var(--g-mint); padding-bottom:4px; }
+  .hero .photo{ height:200px; margin:22px 0 0; transform:rotate(2deg); box-shadow:0 8px 20px rgba(20,33,29,.18); }
+  .konna{ display:flex; align-items:center; gap:10px; margin:32px 0 0; color:var(--g-deep); font-weight:900; font-size:14.5px; letter-spacing:.08em; justify-content:center; text-align:center; }
+  .konna::before,.konna::after{ content:""; flex:1; height:2px; background:var(--g-mint); }
+  .checklist{ display:flex; flex-direction:column; gap:10px; margin-top:16px; }
+  .checklist .ci{ display:flex; gap:10px; align-items:flex-start; font-size:13.5px; font-weight:700; line-height:1.6; }
+  .checklist .ci .ck{ flex:0 0 22px; width:22px; height:22px; border-radius:6px; background:var(--g-deep); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; }
+
+  /* B problem */
+  .prob{ background:#fbfdfc; }
+  .quote-card{ background:#fff; border-left:5px solid var(--g-mint); border-radius:0 10px 10px 0; padding:13px 16px; font-size:14px; font-weight:800; box-shadow:0 2px 8px rgba(30,122,95,.06); }
+  .qgap{ display:flex; flex-direction:column; gap:10px; margin-top:18px; }
+  .plain{ margin:22px 0 0; font-size:13.5px; line-height:1.95; }
+  .plain b{ color:var(--g-deep); }
+  .emph-box{ margin-top:20px; border:2px solid var(--g-mint); background:var(--g-pale); border-radius:12px; padding:16px 18px; font-size:14.5px; font-weight:800; line-height:1.85; }
+
+  /* C structure */
+  .struct{ background:linear-gradient(180deg,#fff,#f4faf7); }
+  .struct .plain{ font-size:13.5px; line-height:1.95; }
+  .banner{ margin:26px -22px -44px; padding:28px 22px 34px; text-align:center; color:#fff; background:linear-gradient(120deg,var(--g-deep),var(--g-mid)); }
+  .banner .s2{ font-size:26px; font-weight:900; margin:0; letter-spacing:.04em; }
+
+  /* D founder */
+  .story h2{ font-size:20px; line-height:1.5; }
+  .story .top{ display:flex; gap:14px; margin-top:4px; }
+  .story .photo-live{ flex:0 0 116px; height:150px; margin-top:12px; }
+  .stats{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:20px; }
+  .stat{ text-align:center; padding:14px 4px; }
+  .stat .lbl{ font-size:10px; font-weight:800; color:#3a4742; border-bottom:2px solid var(--g-mint); padding-bottom:5px; display:inline-block; }
+  .stat .val{ margin-top:8px; font-size:14px; font-weight:900; color:var(--g-deep); }
+  .stat .val b{ font-size:25px; font-variant-numeric:tabular-nums; }
+  .twovictims{ display:flex; flex-direction:column; gap:10px; margin-top:18px; }
+  .victim{ display:flex; gap:12px; align-items:flex-start; background:#fff; border:1px solid var(--card-line); border-radius:12px; padding:13px 15px; }
+  .victim .vi{ flex:0 0 42px; width:42px; height:42px; border-radius:10px; background:linear-gradient(160deg,var(--g-mid),var(--g-deep)); display:flex; align-items:center; justify-content:center; }
+  .victim .vi svg{ width:22px; height:22px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .victim h3{ margin:0 0 4px; font-size:13.5px; font-weight:900; }
+  .victim p{ margin:0; font-size:12px; line-height:1.7; color:#3a4742; }
+  .story-text{ margin-top:16px; border-left:5px solid var(--g-deep); }
+  .story-text p{ margin:0; font-size:13px; line-height:2.0; }
+  .sign{ display:flex; align-items:center; gap:12px; margin-top:22px; font-size:12px; font-weight:800; justify-content:center; text-align:center; }
+  .sign::before,.sign::after{ content:""; flex:1; height:1px; background:var(--g-mint); }
+
+  /* E values */
+  .val-sec{ background:linear-gradient(180deg,#f4faf7,#fff); }
+  .val-sec .row{ display:flex; align-items:center; gap:12px; padding:13px 16px; }
+  .val-sec .chip{ flex:0 0 40px; width:40px; height:40px; border-radius:10px; color:#fff; font-weight:900; font-size:15px; background:linear-gradient(160deg,var(--g-mid),var(--g-deep)); display:flex; align-items:center; justify-content:center; font-variant-numeric:tabular-nums; }
+  .val-sec .row p{ margin:0; font-size:13.5px; font-weight:800; line-height:1.6; }
+  .kicker{ margin:24px 0 0; text-align:center; font-size:15px; font-weight:900; }
+  .kicker span{ background:linear-gradient(transparent 68%, var(--g-mint) 68%); padding:0 2px; }
+
+  /* F activities */
+  .act .card h3{ margin:0 0 6px; font-size:14.5px; font-weight:900; color:var(--ink); display:flex; gap:8px; align-items:center; }
+  .act .no{ color:var(--g-deep); }
+  .act .card p{ margin:0; font-size:12px; line-height:1.75; color:#3a4742; }
+
+  /* PHOTO */
+  .live{ background:var(--g-pale); }
+  .live h2{ text-align:center; font-size:19px; }
+  .live .strip{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px; }
+  .live .ph-live{ height:118px; background:#fff; }
+  .live .cap{ margin-top:6px; text-align:center; font-size:11px; font-weight:800; color:var(--g-deep); }
+  .live .note{ margin:16px 0 0; text-align:center; font-size:11px; color:#4a5550; letter-spacing:.05em; }
+
+  /* G clients */
+  .clients{ background:var(--charcoal); color:#fff; }
+  .clients h2{ color:#fff; }
+  .clients .bar{ background:linear-gradient(180deg,var(--g-mint),var(--g-mid)); }
+  .clients .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+  .clients .tag{ background:rgba(127,212,181,.14); border:1px solid rgba(127,212,181,.4); color:#cdefe0; border-radius:999px; padding:7px 14px; font-size:12.5px; font-weight:700; }
+  .clients .voices{ margin-top:18px; display:flex; flex-direction:column; gap:8px; }
+  .clients .voice{ font-size:13px; font-weight:700; color:#e7f2ee; padding-left:16px; border-left:3px solid var(--g-mint); line-height:1.6; }
+  .clients .close{ margin:20px 0 0; font-size:13.5px; line-height:1.9; color:#eaf7f1; }
+  .clients .close b{ color:var(--g-mint); }
+
+  /* H fit */
+  .fit .ok-card h3,.fit .ng-card h3{ margin:0 0 12px; font-size:14.5px; font-weight:900; }
+  .fit ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .fit li{ font-size:13px; font-weight:700; line-height:1.6; display:flex; gap:9px; }
+  .fit .ok-card li::before{ content:"○"; color:var(--g-deep); font-weight:900; }
+  .ng-card{ background:var(--charcoal); border:none; color:#fff; }
+  .ng-card h3{ color:var(--g-mint); }
+  .fit .ng-card li::before{ content:"×"; color:var(--g-mint); font-weight:900; }
+  .fit .close{ margin-top:22px; text-align:center; font-size:14px; font-weight:900; line-height:2.0; }
+
+  /* FAQ */
+  .faq .card{ display:flex; flex-direction:column; gap:8px; }
+  .faq .q{ display:flex; gap:10px; align-items:flex-start; font-size:13.5px; font-weight:900; }
+  .faq .q .m{ flex:0 0 26px; width:26px; height:26px; border-radius:8px; background:var(--g-deep); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; }
+  .faq .a{ margin:0 0 0 36px; font-size:12px; line-height:1.8; color:#3a4742; }
+
+  /* I apply */
+  .apply{ background:linear-gradient(180deg,#fff,var(--g-pale)); }
+  .steps{ display:flex; flex-direction:column; margin-top:18px; }
+  .step{ display:flex; align-items:center; gap:14px; }
+  .step .sc{ flex:0 0 74px; text-align:center; background:var(--g-deep); color:#fff; border-radius:8px; font-size:11px; font-weight:900; padding:7px 0; letter-spacing:.08em; }
+  .step p{ margin:0; font-size:14px; font-weight:800; padding:12px 0; }
+  .step-line{ width:2px; height:14px; background:var(--g-mint); margin-left:37px; }
+  .fee{ margin-top:22px; text-align:center; border:2px solid var(--g-mint); border-radius:14px; background:#fff; padding:16px; }
+  .fee .note{ font-size:11px; color:#4a5550; margin:0 0 6px; }
+  .fee .yen{ font-size:15px; font-weight:900; margin:0; }
+  .fee .yen b{ font-size:28px; color:var(--g-deep); font-variant-numeric:tabular-nums; }
+  .fee .m{ font-size:12px; color:#3a4742; margin:4px 0 0; }
+  .apply .soft{ margin:16px 0 0; text-align:center; font-size:12.5px; line-height:1.9; }
+  .apply .last{ margin:14px 0 0; text-align:center; font-size:13px; font-weight:800; color:var(--g-deep); }
+
+  /* J closing */
+  .closing{ background:linear-gradient(150deg,var(--charcoal) 0%, #123f32 55%, var(--g-deep) 100%); color:#fff; text-align:center; padding:56px 26px; }
+  .closing p{ margin:0; font-size:13.5px; line-height:2.1; }
+  .closing .lead2{ font-weight:800; }
+  .closing .mid{ margin-top:20px; }
+  .closing .slogan{ margin-top:30px; font-size:27px; font-weight:900; letter-spacing:.03em; }
+  .closing .slogan-sub{ margin-top:10px; font-size:12.5px; letter-spacing:.2em; color:var(--g-mint); font-weight:800; }
+  .closing .rule{ width:56px; height:3px; background:var(--g-mint); margin:26px auto 0; }
+</style>
+
+<div class="stage">
+  <p class="comp-note"><strong>LPカンプ パターンC｜使命ドリブン</strong><br>
+  キャッチ「誠実さが、正しく報われる業界へ。」<br>
+  灰色＝AI生成画像／緑の点線枠＝実写を後入れ</p>
+
+  <div class="phone">
+
+    <!-- A -->
+    <section class="hero">
+      <span class="sec-label">A｜FV</span>
+      <div class="corner tl"></div><div class="corner tr"></div>
+      <svg class="chart" width="72" height="40" viewBox="0 0 72 40">
+        <polyline points="2,34 18,26 32,30 48,14 66,6" stroke="#2E9E77" stroke-width="2.5" fill="none"/>
+        <circle cx="18" cy="26" r="3" fill="#2E9E77"/><circle cx="48" cy="14" r="3" fill="#2E9E77"/>
+        <path d="M60 4 l8 2 -4 7 z" fill="#2E9E77"/>
+      </svg>
+      <h1>誠実さが、<br><span class="u gr">正しく報われる</span>業界へ。</h1>
+      <p class="sub">真面目に、丁寧に、お客様と向き合ってきた。<br>それなのに「マーケティングは怪しい」と、<br>一括りにされていませんか。</p>
+      <p class="decl">私たちは、誠実な事業者が正当に評価される業界を、仲間とともにつくります。</p>
+      <div><span class="org-chip">専門性で誠実に仕事をする事業者のための協会</span></div>
+      <div class="org">
+        <svg width="34" height="34" viewBox="0 0 34 34">
+          <line x1="8" y1="10" x2="24" y2="7" stroke="#2E9E77" stroke-width="1.5"/>
+          <line x1="8" y1="10" x2="14" y2="26" stroke="#2E9E77" stroke-width="1.5"/>
+          <line x1="24" y1="7" x2="27" y2="22" stroke="#2E9E77" stroke-width="1.5"/>
+          <line x1="14" y1="26" x2="27" y2="22" stroke="#2E9E77" stroke-width="1.5"/>
+          <circle cx="8" cy="10" r="4" fill="#1E7A5F"/><circle cx="24" cy="7" r="3.4" fill="#2E9E77"/>
+          <circle cx="14" cy="26" r="3.4" fill="#2E9E77"/><circle cx="27" cy="22" r="4" fill="#7FD4B5"/>
+        </svg>
+        <span class="name">全国マーケティング支援協会</span>
+      </div>
+      <div class="ph photo">AI画像<br>誠実に仕事に向き合う事業者<br>（落ち着いた・信頼感のある雰囲気）</div>
+      <div class="konna">＜こんな志に共感する方へ＞</div>
+      <div class="checklist">
+        <div class="ci"><span class="ck">✓</span>誠実に価値を届ける仕事をしている</div>
+        <div class="ci"><span class="ck">✓</span>業界への不信を、内側から変えたい</div>
+        <div class="ci"><span class="ck">✓</span>数字の誇張や過剰な売り方に、違和感がある</div>
+        <div class="ci"><span class="ck">✓</span>お客様の成果を、本気で考えている</div>
+      </div>
+      <a class="cta"><span class="arr">≫</span>協会の理念を見る</a>
+    </section>
+
+    <!-- B -->
+    <section class="prob">
+      <span class="sec-label">B｜問題提起</span>
+      <div class="h-bar"><div class="bar"></div><h2>この業界、<br>おかしくないですか</h2></div>
+      <div class="qgap">
+        <div class="quote-card">「300万円払ったのに、成果が出なかった」</div>
+        <div class="quote-card">「コンサルは、なんだか怪しい」</div>
+        <div class="quote-card">「マーケティング会社は、信用できない」</div>
+      </div>
+      <p class="plain">誇張された広告。期待に見合わない高額サービス。短期の利益だけを追う提案。<br>その一部のせいで、<b>真面目に価値を届けている人まで「怪しい」と見られてしまう。</b></p>
+      <div class="emph-box">一番割を食っているのは、<br>誠実に仕事をしている、あなたかもしれません。</div>
+    </section>
+
+    <!-- C -->
+    <section class="struct">
+      <span class="sec-label">C｜構造</span>
+      <div class="h-bar"><div class="bar"></div><h2>誠実な人が、<br>損をしていい理由はない</h2></div>
+      <p class="plain">声が大きい人、盛るのがうまい人が目立ち、地道に成果を出す人が埋もれる。そんな構造が、この業界にはあります。<br><br>でも、本当にお客様を守れるのは、誠実に向き合い続けてきた人たちです。</p>
+      <div class="emph-box" style="margin-top:22px;">悪質なサービスと戦うのではなく、<br><span class="gr">誠実な事業者が伸びる環境</span>をつくる。<br>誠実な側が大きくなれば、お客様は安心して相談でき、業界の信頼も戻っていく。</div>
+      <div class="banner"><p class="s2">誠実さを、力に。</p></div>
+    </section>
+
+    <!-- D -->
+    <section class="story">
+      <span class="sec-label">D｜代表・両者の被害</span>
+      <div class="corner tl"></div><div class="corner br"></div>
+      <div class="top">
+        <h2>傷ついているのは、<br>支援者だけでは<br>ありません。</h2>
+        <div class="ph-live photo-live">実写<br>代表写真<br>（後入れ）</div>
+      </div>
+      <div class="stats">
+        <div class="card stat"><span class="lbl">経営コンサル歴</span><div class="val">約<b>13</b>年</div></div>
+        <div class="card stat"><span class="lbl">マーケ支援</span><div class="val"><b>150</b>社<small>超</small></div></div>
+        <div class="card stat"><span class="lbl">企業研修</span><div class="val">年<b>100</b>本<small>超</small></div></div>
+      </div>
+      <div class="twovictims">
+        <div class="victim">
+          <div class="vi"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21 a8 8 0 0 1 16 0"/></svg></div>
+          <div>
+            <h3>誠実な支援者が、正しく評価されない</h3>
+            <p>真面目に成果を出す専門家ほど「怪しい」と誤解され、埋もれてしまう。</p>
+          </div>
+        </div>
+        <div class="victim">
+          <div class="vi"><svg viewBox="0 0 24 24"><path d="M4 20 V9 l8-5 8 5 v11 z"/><path d="M9 20 v-6 h6 v6"/></svg></div>
+          <div>
+            <h3>中小企業が、高額サービスの被害に遭う</h3>
+            <p>高額なのに成果の出ないサービスを売られ、マーケティングそのものへの不信に陥る。</p>
+          </div>
+        </div>
+      </div>
+      <div class="card story-text">
+        <p>150社以上を支援する中で見えたのは、この二つの現実でした。損をしているのは、誠実な支援者と、その先のお客様の両方です。この構造は一人では変えられない。同じ志を持つ仲間が集まれば、業界は変えられる――その想いで、この協会を立ち上げました。</p>
+      </div>
+      <div class="sign">一般社団法人全国マーケティング支援協会　代表理事　金澤 則幸</div>
+    </section>
+
+    <!-- E -->
+    <section class="val-sec">
+      <span class="sec-label">E｜大切にすること</span>
+      <div class="h-bar"><div class="bar"></div><h2>私たちが、<br>大切にしていること</h2></div>
+      <div class="cards">
+        <div class="card row"><span class="chip">01</span><p>誇張ではなく、事実で語る</p></div>
+        <div class="card row"><span class="chip">02</span><p>短期の利益より、お客様の成果を優先する</p></div>
+        <div class="card row"><span class="chip">03</span><p>ノウハウを隠さず、仲間と共有する</p></div>
+        <div class="card row"><span class="chip">04</span><p>一人で抱えず、専門家同士で支え合う</p></div>
+        <div class="card row"><span class="chip">05</span><p>誠実な仕事を、正しく世に伝える</p></div>
+      </div>
+      <p class="kicker"><span>派手さより、信頼を。数字より、価値を。</span></p>
+    </section>
+
+    <!-- F -->
+    <section class="act">
+      <span class="sec-label">F｜活動内容</span>
+      <div class="h-bar"><div class="bar"></div><h2>言葉で終わらせない。<br>毎月、全国で動いています。</h2></div>
+      <div class="cards">
+        <div class="card"><h3><span class="no">①</span>月1回の勉強会・セミナー</h3><p>AI活用・動画マーケティング・広告運用など、誠実に成果を出す実践知を共有。アーカイブ視聴も可能。</p></div>
+        <div class="card"><h3><span class="no">②</span>全国マーケティング交流会</h3><p>東京・名古屋・大阪・静岡・福岡など全国各地で開催。信頼できる仲間と出会う場。</p></div>
+        <div class="card"><h3><span class="no">③</span>協業プロジェクト</h3><p>専門家同士がチームを組み、お客様へ本当に価値ある支援を届ける。</p></div>
+        <div class="card"><h3><span class="no">④</span>会員紹介・情報発信</h3><p>会員の誠実な取り組みを、記事や動画で世に伝える。</p></div>
+        <div class="card"><h3><span class="no">⑤</span>全国ネットワーク</h3><p>地域を越えて、志を同じくする仲間とつながる。</p></div>
+      </div>
+    </section>
+
+    <!-- PHOTO -->
+    <section class="live">
+      <span class="sec-label">PHOTO｜実写</span>
+      <h2>全国各地で、<span class="gr">志ある仲間</span>が集まっています</h2>
+      <div class="strip">
+        <div><div class="ph-live">実写<br>勉強会の様子</div><p class="cap">東京</p></div>
+        <div><div class="ph-live">実写<br>交流会の様子</div><p class="cap">名古屋</p></div>
+      </div>
+      <p class="note">※このセクションはAI生成せず、実写をそのまま配置</p>
+    </section>
+
+    <!-- G clients -->
+    <section class="clients">
+      <span class="sec-label" style="color:#5c7a6f">G｜守りたいのは中小企業</span>
+      <div class="h-bar"><div class="bar"></div><h2>私たちが本当に守りたいのは、<br>その先の中小企業</h2></div>
+      <div class="tags">
+        <span class="tag">地域の飲食店</span><span class="tag">技術力ある製造業</span>
+        <span class="tag">地域密着のサービス業</span><span class="tag">挑戦する個人事業主</span>
+      </div>
+      <div class="voices">
+        <p class="voice">「誰に相談すればいいか分からない」</p>
+        <p class="voice">「前に頼んで、痛い目に遭った」</p>
+      </div>
+      <p class="close">素晴らしい商品を持ちながら悩む企業が、日本には数多くあります。<b>誠実な専門家が正しく評価されることは、その先の中小企業を守ること。</b>私たちは、その橋渡しになります。</p>
+    </section>
+
+    <!-- H fit -->
+    <section class="fit">
+      <span class="sec-label">H｜価値観</span>
+      <div class="h-bar"><div class="bar"></div><h2>一緒に業界を変えたいのは、<br>こんな方</h2></div>
+      <div class="cards">
+        <div class="card ok-card">
+          <h3 class="gr">一緒に歩みたいのは、こんな方</h3>
+          <ul>
+            <li>誠実さを、仕事の軸にしている</li>
+            <li>業界の信頼を、内側から取り戻したい</li>
+            <li>知見を共有し、仲間に貢献できる</li>
+            <li>お客様と中小企業の未来を、本気で考えられる</li>
+          </ul>
+        </div>
+        <div class="card ng-card">
+          <h3>ご遠慮いただいているのは</h3>
+          <ul>
+            <li>誇張や過剰な売り方に抵抗がない方</li>
+            <li>仕事をもらうことだけが目的の方</li>
+            <li>仲間を競争相手としか見られない方</li>
+          </ul>
+        </div>
+      </div>
+      <p class="close">ここは、<span class="gr">志を同じくする人が集まる場所</span>です。</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <span class="sec-label">FAQ</span>
+      <div class="h-bar"><div class="bar"></div><h2>よくあるご質問</h2></div>
+      <div class="cards">
+        <div class="card"><div class="q"><span class="m">Q</span>地方在住でも参加できますか？</div><p class="a">勉強会はオンライン開催＋アーカイブ視聴に対応。交流会も全国各地で開催しています。</p></div>
+        <div class="card"><div class="q"><span class="m">Q</span>個人事業主や副業でも入会できますか？</div><p class="a">法人・個人・働き方は問いません。誠実さと、理念への共感を大切にしています。</p></div>
+        <div class="card"><div class="q"><span class="m">Q</span>どんな人が集まっていますか？</div><p class="a">Web・LINE・広告・デザイン・動画など、各分野で誠実に成果を出す現役の事業者です。</p></div>
+        <div class="card"><div class="q"><span class="m">Q</span>年会費のほかに費用はかかりますか？</div><p class="a">年会費は33,000円（月あたり2,750円）。イベント参加費などは都度ご案内します。</p></div>
+      </div>
+    </section>
+
+    <!-- I apply -->
+    <section class="apply">
+      <span class="sec-label">I｜入会</span>
+      <div class="h-bar"><div class="bar"></div><h2>入会までの流れ</h2></div>
+      <div class="steps">
+        <div class="step"><span class="sc">STEP 1</span><p>お申し込み</p></div>
+        <div class="step-line"></div>
+        <div class="step"><span class="sc">STEP 2</span><p>内容確認・ご案内</p></div>
+        <div class="step-line"></div>
+        <div class="step"><span class="sc">STEP 3</span><p>入会手続き</p></div>
+        <div class="step-line"></div>
+        <div class="step"><span class="sc">STEP 4</span><p>活動スタート</p></div>
+      </div>
+      <div class="fee">
+        <p class="note">※推薦制度・入会条件があります</p>
+        <p class="yen">年会費 <b>33,000</b>円</p>
+        <p class="m">（月あたり2,750円）</p>
+      </div>
+      <p class="soft">無理な勧誘はいたしません。<br>理念への共感を、何より大切にしています。</p>
+      <a class="cta"><span class="arr">≫</span>理念に共感して、参加する</a>
+      <p class="last">誠実さを、力に。ご参加をお待ちしています。</p>
+    </section>
+
+    <!-- J -->
+    <section class="closing">
+      <span class="sec-label" style="color:#5c7a6f">J｜最後に</span>
+      <p class="lead2">真面目に働く人が、報われない。<br>そんな業界のままで、いいはずがない。</p>
+      <p class="mid">一人の誠実さは、埋もれてしまう。<br>けれど、志を同じくする仲間が集まれば、<br>業界の「あたりまえ」は変えられます。</p>
+      <div class="rule"></div>
+      <p class="slogan">誠実さが、<br>正しく報われる業界へ。</p>
+      <p class="slogan-sub">全国マーケティング支援協会</p>
+    </section>
+
+  </div>
+
+  <p class="comp-note">lp_pattern_C.md 準拠｜レイアウト・文字量確認用カンプ。<br>本番は各セクションをGPT Image 2で画像生成し、UTAGEに配置します。</p>
+</div>
